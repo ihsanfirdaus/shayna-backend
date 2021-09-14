@@ -26,7 +26,7 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->product->name }}</td>
                                     <td>
-                                        <img src="{{ $item->photo }}" alt="">
+                                        <img src="{{ $item->getPhoto() }}" alt="">
                                     </td>
                                     <td>
                                         {{ $item->is_default ? 'Ya':'Tidak' }}

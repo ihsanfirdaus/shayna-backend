@@ -11,6 +11,7 @@ class ProductGallery extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $appends = ['url_photo'];
     protected $fillable = [
         'products_id','photo','is_default'
     ];
@@ -22,8 +23,19 @@ class ProductGallery extends Model
         return $this->belongsTo(Product::class,'products_id','id');
     }
 
-    public function getPhotoAttribute($value)
+    public function getPhoto()
     {
-        return url('storage/' .$value);
+        $path = public_path() . '/images/products';
+
+        if(file_exists($path) and $this->photo != null) {
+            return asset('images/products/'.$this->photo);
+        }
+
+        return asset('images/no_image.png');
+    }
+
+    public function getUrlPhotoAttribute()
+    {
+        return $this->getPhoto();
     }
 }
