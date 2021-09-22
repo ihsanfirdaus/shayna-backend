@@ -54,7 +54,7 @@ class ProductGalleryController extends Controller
             $fileName = time().'_'.$uploadedFile->getClientOriginalName();
             $filePath = public_path().'/images/products';
 
-            $data['photo'] = $fileName;
+            $data['photo'] = url('/').$fileName;
             $uploadedFile->move($filePath,$fileName);
         }
         
